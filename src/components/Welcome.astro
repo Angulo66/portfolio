@@ -2,10 +2,96 @@
 import background from '../assets/background.svg';
 ---
 
+<script>
+  // Check for saved theme preference or use system preference
+  const getInitialTheme = () => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  // Apply theme to document
+  const applyTheme = (theme) => {
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+    localStorage.setItem('theme', theme);
+
+    // Update button icon
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.innerHTML = theme === 'dark'
+        ? '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>'
+        : '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+    }
+  };
+
+  // Initialize theme on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const initialTheme = getInitialTheme();
+    applyTheme(initialTheme);
+
+    // Set up theme toggle button
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+      });
+    }
+  });
+</script>
+
 <div id="container">
 	<img id="background" src={background.src} alt="" fetchpriority="high" />
 	<main>
 		<section id="home">
+			<!-- Floating Elements -->
+			<div class="floating-elements">
+				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-1" viewBox="0 0 50 40">
+					<g fill="var(--blue, #3245ff)" stroke="#231f20" stroke-linejoin="round" stroke-width="1.23">
+						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
+						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+					</g>
+				</svg>
+
+				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-2" viewBox="0 0 50 40">
+					<g fill="var(--purple, #bc52ee)" stroke="#231f20" stroke-linejoin="round" stroke-width="1.23">
+						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
+						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+					</g>
+				</svg>
+
+				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-3" viewBox="0 0 50 40">
+					<g fill="var(--pink, #f041ff)" stroke="#231f20" stroke-linejoin="round" stroke-width="1.23">
+						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
+						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+					</g>
+				</svg>
+
+				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-4" viewBox="0 0 50 40">
+					<g fill="var(--blue, #3245ff)" stroke="#231f20" stroke-linejoin="round" stroke-width="1.23">
+						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
+						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+					</g>
+				</svg>
+
+				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-5" viewBox="0 0 50 40">
+					<g fill="var(--purple, #bc52ee)" stroke="#231f20" stroke-linejoin="round" stroke-width="1.23">
+						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
+						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+					</g>
+				</svg>
+
+				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-6" viewBox="0 0 50 40">
+					<g fill="var(--pink, #f041ff)" stroke="#231f20" stroke-linejoin="round" stroke-width="1.23">
+						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
+						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+					</g>
+				</svg>
+			</div>
+
 			<pre>Fullstack Developer</pre>
 			<h1>Helder Lopez</h1>
 			<p>Passionate about crafting elegant solutions with modern web technologies</p>
@@ -203,6 +289,103 @@ import background from '../assets/background.svg';
 		position: relative;
 		text-align: center;
 		scroll-margin-top: 80px;
+		overflow: hidden;
+	}
+
+	/* Floating elements styles */
+	.floating-elements {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.floating-piece {
+		position: absolute;
+		opacity: 0.6;
+	}
+
+	.floating-1 {
+		top: 15%;
+		left: 10%;
+		width: 60px;
+		height: 60px;
+		animation: float 8s ease-in-out infinite;
+	}
+
+	.floating-2 {
+		top: 25%;
+		right: 15%;
+		width: 80px;
+		height: 80px;
+		animation: float 12s ease-in-out infinite 1s;
+	}
+
+	.floating-3 {
+		bottom: 20%;
+		left: 20%;
+		width: 50px;
+		height: 50px;
+		animation: float 10s ease-in-out infinite 2s;
+	}
+
+	.floating-4 {
+		top: 60%;
+		right: 10%;
+		width: 40px;
+		height: 40px;
+		animation: float 9s ease-in-out infinite 1.5s;
+	}
+
+	.floating-5 {
+		top: 75%;
+		right: 30%;
+		width: 35px;
+		height: 35px;
+		animation: float 11s ease-in-out infinite 0.5s;
+	}
+
+	.floating-6 {
+		top: 40%;
+		left: 5%;
+		width: 45px;
+		height: 45px;
+		animation: float 13s ease-in-out infinite 3s;
+	}
+
+	@keyframes float {
+		0% {
+			transform: translateY(0) rotate(0deg);
+		}
+		50% {
+			transform: translateY(-20px) rotate(10deg);
+		}
+		100% {
+			transform: translateY(0) rotate(0deg);
+		}
+	}
+
+	/* Add a second animation for some elements */
+	.floating-2, .floating-4, .floating-6 {
+		animation-name: float-alt;
+	}
+
+	@keyframes float-alt {
+		0% {
+			transform: translateY(0) rotate(0deg) scale(1);
+		}
+		33% {
+			transform: translateY(-15px) rotate(5deg) scale(1.05);
+		}
+		66% {
+			transform: translateY(10px) rotate(-5deg) scale(0.95);
+		}
+		100% {
+			transform: translateY(0) rotate(0deg) scale(1);
+		}
 	}
 
 	h1 {
@@ -210,7 +393,7 @@ import background from '../assets/background.svg';
 		margin-top: 0.25em;
 		margin-bottom: 0.5em;
 		font-weight: 700;
-		background: linear-gradient(90deg, #3245ff 0%, #bc52ee 100%);
+		background: linear-gradient(90deg, var(--blue) 0%, var(--purple) 100%);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -243,7 +426,7 @@ import background from '../assets/background.svg';
 
 	#links a.button {
 		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+		background: linear-gradient(83.21deg, var(--blue) 0%, var(--purple) 100%);
 		box-shadow:
 			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
 			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
@@ -260,7 +443,7 @@ import background from '../assets/background.svg';
 			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
 			monospace;
 		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
+		background: linear-gradient(14deg, #d83333 0%, var(--pink) 100%);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -270,12 +453,12 @@ import background from '../assets/background.svg';
 	h2 {
 		margin: 0 0 1em;
 		font-weight: normal;
-		color: #111827;
+		color: var(--text-primary);
 		font-size: 20px;
 	}
 
 	p {
-		color: #4b5563;
+		color: var(--text-secondary);
 		font-size: 16px;
 		line-height: 24px;
 		letter-spacing: -0.006em;
@@ -400,7 +583,7 @@ import background from '../assets/background.svg';
 		left: 0;
 		width: 40px;
 		height: 3px;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+		background: linear-gradient(83.21deg, var(--blue) 0%, var(--purple) 100%);
 		border-radius: 3px;
 	}
 
@@ -456,7 +639,7 @@ import background from '../assets/background.svg';
 	.project-link {
 		display: inline-block;
 		padding: 8px 16px;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+		background: linear-gradient(83.21deg, var(--blue) 0%, var(--purple) 100%);
 		color: white;
 		border-radius: 8px;
 		text-decoration: none;
@@ -539,7 +722,7 @@ import background from '../assets/background.svg';
 
 	.skill-tag {
 		padding: 6px 12px;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+		background: linear-gradient(83.21deg, var(--blue) 0%, var(--purple) 100%);
 		color: white;
 		border-radius: 20px;
 		font-size: 14px;
