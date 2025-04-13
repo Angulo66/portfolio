@@ -3,17 +3,22 @@
   --text-secondary: #4b5563;
   --bg-primary: #ffffff;
   --bg-secondary: rgba(255, 255, 255, 0.8);
-  --blue: #3245ff;
-  --purple: #bc52ee;
-  --pink: #f041ff;
+  --primary: #FFD100; /* Bright yellow */
+  --secondary: #FF9D00; /* Orange-yellow */
+  --accent: #00FFFF; /* Cyan for cyberpunk contrast */
+  --neon: #FFFF00; /* Neon yellow */
   --border-color: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
   --text-primary: #ffffff;
   --text-secondary: #e5e7eb;
-  --bg-primary: #0f172a;
-  --bg-secondary: rgba(15, 23, 42, 0.8);
+  --bg-primary: #121212;
+  --bg-secondary: rgba(18, 18, 18, 0.8);
+  --primary: #FFD100; /* Bright yellow */
+  --secondary: #FF9D00; /* Orange-yellow */
+  --accent: #00FFFF; /* Cyan for cyberpunk contrast */
+  --neon: #FFFF00; /* Neon yellow */
   --border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -41,10 +46,6 @@ body {
 }
 
 .dark p {
-  color: var(--text-secondary);
-}
-
-.dark .quote-text {
   color: var(--text-secondary);
 }
 
@@ -87,7 +88,7 @@ body {
 
 /* Fix for timeline in dark mode */
 .dark .timeline-date {
-  color: var(--blue);
+  color: var(--primary);
 }
 
 .dark .timeline-content h4 {
@@ -109,12 +110,47 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* Fix for quote author */
-.dark .quote-author {
-  color: var(--text-secondary);
+/* Header styles for light/dark mode */
+/* Light mode header */
+:root:not(.dark) nav.md\:block {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Fix for header navigation */
+:root:not(.dark) nav.md\:block a {
+  color: var(--text-primary) !important;
+}
+
+:root:not(.dark) nav.md\:block a:hover {
+  color: var(--primary) !important;
+}
+
+:root:not(.dark) #theme-toggle,
+:root:not(.dark) #mobile-theme-toggle {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+}
+
+:root:not(.dark) #mobile-menu-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--text-primary);
+}
+
+:root:not(.dark) #mobile-menu {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+:root:not(.dark) #mobile-menu a,
+:root:not(.dark) #close-menu-button {
+  color: var(--text-primary) !important;
+}
+
+:root:not(.dark) #mobile-menu a:hover {
+  color: var(--primary) !important;
+}
+
+/* Dark mode header */
 .dark nav a {
   color: var(--text-primary) !important;
 }
@@ -130,6 +166,38 @@ body {
 
 /* Adjust background image in dark mode */
 .dark #background {
-  filter: blur(100px) brightness(0.7) hue-rotate(45deg);
+  filter: blur(100px) brightness(0.7) hue-rotate(180deg);
   opacity: 0.8;
+}
+
+/* Add cyberpunk glow effects */
+.dark .skill-tag,
+.dark .project-link,
+.dark .cv-button {
+  box-shadow: 0 0 15px rgba(255, 209, 0, 0.7);
+}
+
+.dark .timeline::before,
+.dark .timeline-dot {
+  box-shadow: 0 0 15px rgba(255, 209, 0, 0.7);
+}
+
+.dark .skill-category h3:after {
+  box-shadow: 0 0 10px rgba(255, 209, 0, 0.7);
+}
+
+.dark h1 {
+  text-shadow: 0 0 20px rgba(255, 209, 0, 0.7);
+}
+
+.dark pre {
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+.dark .timeline-date {
+  text-shadow: 0 0 10px rgba(255, 209, 0, 0.5);
+}
+
+.dark #home p {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }

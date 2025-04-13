@@ -8,7 +8,7 @@ const isHomePage = currentPath === '/' || currentPath === '';
   <!-- Mobile Menu Button (only visible on mobile) -->
   <button
     id="mobile-menu-button"
-    class="md:hidden fixed top-4 right-4 text-gray-300 hover:text-white focus:outline-none bg-black bg-opacity-50 backdrop-blur-sm p-2 rounded-full"
+    class="md:hidden fixed top-4 right-4 focus:outline-none backdrop-blur-sm p-2 rounded-full"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -17,41 +17,41 @@ const isHomePage = currentPath === '/' || currentPath === '';
 
   <!-- Centered Desktop Navigation -->
   <nav
-    class="hidden md:block fixed top-8 bg-black bg-opacity-80 border border-gray-800 backdrop-blur-sm rounded-full px-16 py-3 shadow-lg transition-all duration-300 animate-slide-down"
+    class="hidden md:block fixed top-8 backdrop-blur-sm rounded-full px-16 py-3 shadow-lg transition-all duration-300 animate-slide-down"
   >
     <div class="flex items-center gap-8">
       <button
         id="theme-toggle"
-        class="text-gray-300 hover:text-white transition-colors duration-300 p-1 rounded-full bg-gray-800 bg-opacity-50"
+        class="transition-colors duration-300 p-1 rounded-full"
         aria-label="Toggle dark mode"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
 
-      <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300 relative py-1 group" data-nav-link>
+      <a href="#home" class="transition-colors duration-300 relative py-1 group" data-nav-link>
         Home
         <span
-          class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-full nav-indicator rounded-full"
+          class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-300 group-hover:w-full nav-indicator rounded-full"
         ></span>
       </a>
 
       <a
         href={isHomePage ? '#about' : '/'}
-        class="text-gray-300 hover:text-white transition-colors duration-300 relative py-1 group"
+        class="transition-colors duration-300 relative py-1 group"
         data-nav-link
       >
         About
         <span
-          class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-full nav-indicator rounded-full"
+          class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-300 group-hover:w-full nav-indicator rounded-full"
         ></span>
       </a>
 
 
 
-      <a href="#projects" class="text-gray-300 hover:text-white transition-colors duration-300 relative py-1 group" data-nav-link>
+      <a href="#projects" class="transition-colors duration-300 relative py-1 group" data-nav-link>
         Projects
         <span
-          class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-full nav-indicator rounded-full"
+          class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-300 group-hover:w-full nav-indicator rounded-full"
         ></span>
       </a>
 
@@ -59,7 +59,7 @@ const isHomePage = currentPath === '/' || currentPath === '';
       <a
         href="/resume.pdf"
         target="_blank"
-        class="text-gray-300 hover:text-white transition-colors duration-300 relative py-1 group flex items-center"
+        class="transition-colors duration-300 relative py-1 group flex items-center"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -71,16 +71,16 @@ const isHomePage = currentPath === '/' || currentPath === '';
         </svg>
         CV
         <span
-          class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-full rounded-full"
+          class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-300 group-hover:w-full rounded-full"
         ></span>
       </a>
     </div>
   </nav>
 
   <!-- Mobile Navigation Menu -->
-  <div id="mobile-menu" class="hidden md:hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 backdrop-blur-md z-50">
+  <div id="mobile-menu" class="hidden md:hidden fixed top-0 left-0 w-full h-full backdrop-blur-md z-50">
     <div class="absolute top-4 right-4">
-      <button id="close-menu-button" class="text-gray-300 hover:text-white focus:outline-none p-2">
+      <button id="close-menu-button" class="focus:outline-none p-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
@@ -91,28 +91,28 @@ const isHomePage = currentPath === '/' || currentPath === '';
         <li class="flex justify-center">
           <button
             id="mobile-theme-toggle"
-            class="text-gray-300 hover:text-white transition-colors duration-300 p-2 rounded-full bg-gray-800 bg-opacity-50"
+            class="transition-colors duration-300 p-2 rounded-full"
             aria-label="Toggle dark mode"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
           </button>
         </li>
         <li>
-          <a href="#home" class="block text-2xl text-gray-300 hover:text-white transition-colors duration-300 py-2 relative group">
+          <a href="#home" class="block text-2xl transition-colors duration-300 py-2 relative group">
             Start
             <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-24 rounded-full"
+              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-300 group-hover:w-24 rounded-full"
             ></span>
           </a>
         </li>
         <li>
           <a
             href={isHomePage ? '#about' : '/'}
-            class="block text-2xl text-gray-300 hover:text-white transition-colors duration-300 py-2 relative group"
+            class="block text-2xl transition-colors duration-300 py-2 relative group"
           >
             About
             <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-24 rounded-full"
+              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-300 group-hover:w-24 rounded-full"
             ></span>
           </a>
         </li>
@@ -120,11 +120,11 @@ const isHomePage = currentPath === '/' || currentPath === '';
         <li>
           <a
             href={isHomePage ? '#projects' : '/#projects'}
-            class="block text-2xl text-gray-300 hover:text-white transition-colors duration-300 py-2 relative group"
+            class="block text-2xl transition-colors duration-300 py-2 relative group"
           >
             Projects
             <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-24 rounded-full"
+              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-300 group-hover:w-24 rounded-full"
             ></span>
           </a>
         </li>
@@ -134,7 +134,7 @@ const isHomePage = currentPath === '/' || currentPath === '';
           <a
             href="/resume.pdf"
             target="_blank"
-            class="block text-2xl text-gray-300 hover:text-white transition-colors duration-300 py-2 relative group flex items-center justify-center"
+            class="block text-2xl transition-colors duration-300 py-2 relative group flex items-center justify-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
@@ -146,7 +146,7 @@ const isHomePage = currentPath === '/' || currentPath === '';
             </svg>
             Download CV
             <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-24 rounded-full"
+              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-300 group-hover:w-24 rounded-full"
             ></span>
           </a>
         </li>
