@@ -46,16 +46,7 @@ const isHomePage = currentPath === '/' || currentPath === '';
         ></span>
       </a>
 
-      <a
-        href={isHomePage ? '#skills' : '/#skills'}
-        class="text-gray-300 hover:text-white transition-colors duration-300 relative py-1 group"
-        data-nav-link
-      >
-        Skills
-        <span
-          class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-full nav-indicator rounded-full"
-        ></span>
-      </a>
+
 
       <a href="#projects" class="text-gray-300 hover:text-white transition-colors duration-300 relative py-1 group" data-nav-link>
         Projects
@@ -125,17 +116,7 @@ const isHomePage = currentPath === '/' || currentPath === '';
             ></span>
           </a>
         </li>
-        <li>
-          <a
-            href={isHomePage ? '#skills' : '/#skills'}
-            class="block text-2xl text-gray-300 hover:text-white transition-colors duration-300 py-2 relative group"
-          >
-            Skills
-            <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-blue-600 transition-all duration-300 group-hover:w-24 rounded-full"
-            ></span>
-          </a>
-        </li>
+
         <li>
           <a
             href={isHomePage ? '#projects' : '/#projects'}
@@ -255,7 +236,7 @@ const isHomePage = currentPath === '/' || currentPath === '';
       const scrollPosition = window.scrollY;
 
       // Get all sections
-      const sections = ['home', 'about', 'skills', 'projects']
+      const sections = ['home', 'about', 'projects']
         .map((id) => {
           const element = document.getElementById(id);
           return element ? { id, top: element.offsetTop - 100, element } : null;

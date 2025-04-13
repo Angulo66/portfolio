@@ -85,9 +85,28 @@ body {
   color: var(--text-primary);
 }
 
-/* Fix for project card titles */
-.dark .project-card h3 {
+/* Fix for timeline in dark mode */
+.dark .timeline-date {
+  color: var(--blue);
+}
+
+.dark .timeline-content h4 {
   color: var(--text-primary);
+}
+
+.dark .timeline-content h5 {
+  color: var(--text-secondary);
+}
+
+/* Fix for project card titles */
+.dark .project-content h3 {
+  color: var(--text-primary);
+}
+
+/* Fix for project image placeholders */
+.dark .project-image-placeholder {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Fix for quote author */
