@@ -194,17 +194,38 @@ const isHomePage = currentPath === '/' || currentPath === '';
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
   }
 
-  /* Reverse indicator colors for better contrast */
-  :root:not(.dark) .nav-indicator,
+  /* Indicator colors for light/dark mode */
+  /* Light mode indicators */
+  :root:not(.dark) .nav-indicator {
+    background-color: var(--dark-indicator) !important;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+
   :root:not(.dark) a:hover .nav-indicator,
   :root:not(.dark) a:hover span.rounded-full {
     background-color: var(--dark-indicator) !important;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   }
 
-  .dark .nav-indicator,
-  .dark a:hover .nav-indicator,
-  .dark a:hover span.rounded-full {
+  /* Dark mode indicators */
+  html.dark .nav-indicator {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+
+  html.dark a:hover .nav-indicator,
+  html.dark a:hover span.rounded-full {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Ensure mobile menu indicators also follow the theme */
+  html.dark #mobile-menu .nav-indicator {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+
+  html.dark #mobile-menu a:hover .nav-indicator {
     background-color: #ffffff !important;
     box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
   }
@@ -266,43 +287,76 @@ const isHomePage = currentPath === '/' || currentPath === '';
         const mobileMoonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
 
         mobileThemeToggle.innerHTML = newTheme === 'dark' ? mobileSunIcon : mobileMoonIcon;
+
+        // Update nav indicators after theme change
+        setTimeout(updateActiveNavLink, 50);
       });
     }
 
     // Update active nav link based on scroll position
     function updateActiveNavLink() {
       const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrolledToBottom = scrollPosition + windowHeight >= documentHeight - 50; // Consider bottom when within 50px
 
       // Get all sections
       const sections = ['home', 'about', 'projects', 'contact']
         .map((id) => {
           const element = document.getElementById(id);
-          return element ? { id, top: element.offsetTop - 100, element } : null;
+          return element ? {
+            id,
+            top: element.offsetTop - 100,
+            bottom: element.offsetTop + element.offsetHeight,
+            element
+          } : null;
         })
-        .filter((section) => section !== null) as { id: string; top: number; element: HTMLElement }[];
+        .filter((section) => section !== null) as { id: string; top: number; bottom: number; element: HTMLElement }[];
 
       // Find the current section
       let currentSection: string | null = null;
-      for (const section of sections) {
-        if (scrollPosition >= section.top) {
-          currentSection = section.id;
-        } else {
-          break;
+
+      // Find contact section for special handling
+      const contactSection = sections.find(section => section.id === 'contact');
+
+      // Special case for contact section when scrolled to bottom or near contact
+      if (scrolledToBottom || (contactSection && scrollPosition >= contactSection.top - 100)) {
+        currentSection = 'contact';
+        // Contact section is active
+      } else {
+        // Normal section detection
+        for (const section of sections) {
+          if (scrollPosition >= section.top) {
+            currentSection = section.id;
+          } else {
+            break;
+          }
         }
       }
 
       // Update nav links
       if (currentSection) {
+
         navLinks.forEach((link) => {
           const href = link.getAttribute('href');
           const indicator = link.querySelector('.nav-indicator') as HTMLElement | null;
 
-          // Special handling for contact section which is in the footer
+          // Improved handling for all sections including contact
           const isContactActive = currentSection === 'contact' && href && href.includes('#contact');
-          const isOtherSectionActive = currentSection !== 'contact' && href && href.includes(currentSection as string);
+          const isOtherSectionActive = currentSection !== 'contact' && href && href.includes('#' + currentSection);
+
+
 
           if (isContactActive || isOtherSectionActive) {
-            if (indicator) indicator.style.width = '100%';
+            if (indicator) {
+              indicator.style.width = '100%';
+              // Ensure correct color based on theme
+              if (document.documentElement.classList.contains('dark')) {
+                indicator.style.backgroundColor = '#ffffff';
+              } else {
+                indicator.style.backgroundColor = 'var(--dark-indicator)';
+              }
+            }
           } else {
             if (indicator) indicator.style.width = '0';
           }
@@ -325,6 +379,15 @@ const isHomePage = currentPath === '/' || currentPath === '';
 
     // Initial check for active link
     updateActiveNavLink();
+
+    // Update nav indicators when theme changes
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        // Small delay to ensure theme has changed before updating indicators
+        setTimeout(updateActiveNavLink, 50);
+      });
+    }
 
     // Handle hash links smoothly
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
