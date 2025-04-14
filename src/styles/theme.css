@@ -7,6 +7,8 @@
   --secondary: #777777; /* Lighter neutral */
   --accent: #999999; /* Even lighter neutral */
   --border-color: rgba(0, 0, 0, 0.1);
+  --light-indicator: rgba(255, 255, 255, 0.9); /* For dark mode indicators */
+  --dark-indicator: rgba(0, 0, 0, 0.8); /* For light mode indicators */
 }
 
 .dark {
@@ -18,6 +20,8 @@
   --secondary: #cccccc; /* Lighter neutral */
   --accent: #aaaaaa; /* Medium neutral */
   --border-color: rgba(255, 255, 255, 0.1);
+  --light-indicator: rgba(255, 255, 255, 0.9); /* For dark mode indicators */
+  --dark-indicator: rgba(0, 0, 0, 0.8); /* For light mode indicators */
 }
 
 html,
@@ -110,10 +114,15 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Make sure contact section has proper scroll margin */
+#contact {
+  scroll-margin-top: 80px;
+}
+
 /* Header styles for light/dark mode */
 /* Light mode header */
 :root:not(.dark) nav.md\:block {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(245, 247, 250, 0.9);
   border-color: rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -151,6 +160,12 @@ body {
 }
 
 /* Dark mode header */
+.dark nav.md\:block {
+  background-color: rgba(51, 51, 51, 0.9);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
 .dark nav a {
   color: var(--text-primary) !important;
 }

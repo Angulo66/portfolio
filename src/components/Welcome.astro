@@ -1,18 +1,79 @@
 ---
 import background from '../assets/background.svg';
+
+// Project data
+const projects = [
+  {
+    title: 'E-Commerce Platform',
+    description: 'A full-featured online store with product management, shopping cart, and payment processing.',
+    technologies: ['React', 'Node.js', 'MongoDB'],
+    image: {
+      placeholder: true,
+      alt: 'E-Commerce Platform'
+    }
+  },
+  {
+    title: 'Task Management App',
+    description: 'A collaborative task management application with real-time updates and team features.',
+    technologies: ['TypeScript', 'Express', 'PostgreSQL'],
+    image: {
+      placeholder: true,
+      alt: 'Task Management App'
+    }
+  },
+  {
+    title: 'Portfolio Website',
+    description: 'A responsive portfolio website built with modern web technologies.',
+    technologies: ['Astro', 'Tailwind CSS', 'JavaScript'],
+    image: {
+      placeholder: true,
+      alt: 'Portfolio Website'
+    }
+  }
+];
+
+// Work experience data
+const workExperience = [
+  {
+    period: '2021 - Present',
+    title: 'Senior Fullstack Developer',
+    company: 'Tech Innovations Inc.',
+    description:
+      'Lead development of enterprise web applications using React, Node.js, and AWS. Implemented CI/CD pipelines and mentored junior developers.'
+  },
+  {
+    period: '2018 - 2021',
+    title: 'Frontend Developer',
+    company: 'Digital Solutions Ltd.',
+    description:
+      'Developed responsive web applications using React and TypeScript. Collaborated with UX designers to implement pixel-perfect interfaces.'
+  },
+  {
+    period: '2016 - 2018',
+    title: 'Web Developer',
+    company: 'Creative Web Agency',
+    description: 'Built custom websites and e-commerce solutions for clients using JavaScript, HTML/CSS, and PHP.'
+  }
+];
+
+// Skills data
+const skills = ['JavaScript', 'TypeScript', 'React', 'Node.js', 'PostgreSQL', 'Docker'];
 ---
 
 <script>
   // Check for saved theme preference or use system preference
-  const getInitialTheme = () => {
+  const getInitialTheme = (): 'light' | 'dark' => {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        return savedTheme;
+      }
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   };
 
   // Apply theme to document
-  const applyTheme = (theme) => {
+  const applyTheme = (theme: 'light' | 'dark') => {
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
     localStorage.setItem('theme', theme);
@@ -20,9 +81,10 @@ import background from '../assets/background.svg';
     // Update button icon
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
-      themeToggle.innerHTML = theme === 'dark'
-        ? '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>'
-        : '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+      themeToggle.innerHTML =
+        theme === 'dark'
+          ? '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>'
+          : '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
     }
   };
 
@@ -44,983 +106,892 @@ import background from '../assets/background.svg';
 </script>
 
 <div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="home">
-			<!-- Floating Elements -->
-			<div class="floating-elements">
-				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-1" viewBox="0 0 50 40">
-					<g fill="var(--primary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
-						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
-						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
-					</g>
-				</svg>
+  <img id="background" src={background.src} alt="" fetchpriority="high" />
+  <main>
+    <section id="home">
+      <!-- Floating Elements -->
+      <div class="floating-elements">
+        <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-1" viewBox="0 0 50 40">
+          <g fill="var(--primary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+            <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
+            ></path>
+            <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+          </g>
+        </svg>
 
-				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-2" viewBox="0 0 50 40">
-					<g fill="var(--secondary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
-						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
-						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
-					</g>
-				</svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-2" viewBox="0 0 50 40">
+          <g fill="var(--secondary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+            <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
+            ></path>
+            <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+          </g>
+        </svg>
 
-				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-3" viewBox="0 0 50 40">
-					<g fill="var(--accent)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
-						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
-						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
-					</g>
-				</svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-3" viewBox="0 0 50 40">
+          <g fill="var(--accent)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+            <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
+            ></path>
+            <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+          </g>
+        </svg>
 
-				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-4" viewBox="0 0 50 40">
-					<g fill="var(--primary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
-						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
-						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
-					</g>
-				</svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-4" viewBox="0 0 50 40">
+          <g fill="var(--primary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+            <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
+            ></path>
+            <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+          </g>
+        </svg>
 
-				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-5" viewBox="0 0 50 40">
-					<g fill="var(--secondary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
-						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
-						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
-					</g>
-				</svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-5" viewBox="0 0 50 40">
+          <g fill="var(--secondary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+            <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
+            ></path>
+            <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+          </g>
+        </svg>
 
-				<svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-6" viewBox="0 0 50 40">
-					<g fill="var(--accent)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
-						<path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"></path>
-						<ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
-					</g>
-				</svg>
-			</div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-6" viewBox="0 0 50 40">
+          <g fill="var(--accent)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+            <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
+            ></path>
+            <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
+          </g>
+        </svg>
+      </div>
 
-			<h1>Helder Lopez</h1>
-			<pre>Fullstack Developer</pre>
-			<p>Passionate about crafting elegant solutions with modern web technologies</p>
-		</section>
+      <h1>Helder Lopez</h1>
+      <pre>Fullstack Developer</pre>
+      <p>Passionate about crafting elegant solutions with modern web technologies</p>
+    </section>
 
-		<section id="about">
-			<h2 class="section-title">About Me</h2>
-			<div class="about-content box">
-				<div class="profile-container">
-					<div class="profile-image-container">
-						<div class="profile-image-placeholder">
-							<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-								<circle cx="12" cy="7" r="4"></circle>
-							</svg>
-							<p class="add-photo-text">Add Photo</p>
-						</div>
-					</div>
-					<div class="about-text">
-						<p>
-							Hello! I'm Helder Lopez, a passionate fullstack developer with expertise in building modern web applications.
-							With over 5 years of experience in the industry, I've worked on a variety of projects ranging from
-							small business websites to complex enterprise applications.
-						</p>
-						<p>
-							I enjoy solving complex problems and turning ideas into reality through clean, efficient code.
-							My approach combines technical expertise with a strong focus on user experience and business needs.
-						</p>
-					</div>
-				</div>
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content box">
+        <div class="profile-container">
+          <div class="profile-image-container">
+            <div class="profile-image-placeholder">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="80"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <p class="add-photo-text">Add Photo</p>
+            </div>
+          </div>
+          <div class="about-text">
+            <p>
+              Hello! I'm Helder Lopez, a passionate fullstack developer with expertise in building modern web applications. With over 5
+              years of experience in the industry, I've worked on a variety of projects ranging from small business websites to complex
+              enterprise applications.
+            </p>
+            <p>
+              I enjoy solving complex problems and turning ideas into reality through clean, efficient code. My approach combines technical
+              expertise with a strong focus on user experience and business needs.
+            </p>
+          </div>
+        </div>
 
-				<div class="experience-section">
-					<h3 class="section-subtitle">Work Experience</h3>
-					<div class="timeline">
-						<div class="timeline-item">
-							<div class="timeline-dot"></div>
-							<div class="timeline-date">2021 - Present</div>
-							<div class="timeline-content">
-								<h4>Senior Fullstack Developer</h4>
-								<h5>Tech Innovations Inc.</h5>
-								<p>Lead development of enterprise web applications using React, Node.js, and AWS. Implemented CI/CD pipelines and mentored junior developers.</p>
-							</div>
-						</div>
+        <div class="skills-section">
+          <h3 class="section-subtitle">Tech Stack</h3>
+          <div class="skill-tags-container">
+            {skills.map((skill) => <span class="project-tag">{skill}</span>)}
+          </div>
+        </div>
 
-						<div class="timeline-item">
-							<div class="timeline-dot"></div>
-							<div class="timeline-date">2018 - 2021</div>
-							<div class="timeline-content">
-								<h4>Frontend Developer</h4>
-								<h5>Digital Solutions Ltd.</h5>
-								<p>Developed responsive web applications using React and TypeScript. Collaborated with UX designers to implement pixel-perfect interfaces.</p>
-							</div>
-						</div>
+        <div class="experience-section">
+          <h3 class="section-subtitle">Experience</h3>
+          <div class="timeline">
+            {
+              workExperience.map((job) => (
+                <div class="timeline-item">
+                  <div class="timeline-dot" />
+                  <div class="timeline-date">{job.period}</div>
+                  <div class="timeline-content">
+                    <h4>{job.title}</h4>
+                    <h5>{job.company}</h5>
+                    <p>{job.description}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
 
-						<div class="timeline-item">
-							<div class="timeline-dot"></div>
-							<div class="timeline-date">2016 - 2018</div>
-							<div class="timeline-content">
-								<h4>Web Developer</h4>
-								<h5>Creative Web Agency</h5>
-								<p>Built custom websites and e-commerce solutions for clients using JavaScript, HTML/CSS, and PHP.</p>
-							</div>
-						</div>
-					</div>
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+        {
+          projects.map((project) => (
+            <div class="project-card box">
+              <div class="project-image-container">
+                <div class="project-image-placeholder">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                  <span>{project.image.alt}</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div class="project-tags">
+                  {project.technologies.map((tech) => (
+                    <span class="project-tag">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
 
-					<div class="cv-download">
-						<a href="/resume.pdf" class="cv-button" download>
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-								<polyline points="7 10 12 15 17 10"></polyline>
-								<line x1="12" y1="15" x2="12" y2="3"></line>
-							</svg>
-							Download CV
-						</a>
-					</div>
-				</div>
+    <footer id="contact">
+      <div class="footer-content">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="footer-text">Feel free to reach out for collaborations or just a friendly hello</p>
 
-				<div class="skills-section">
-					<h3 class="section-subtitle">Skills & Technologies</h3>
-					<div class="skill-categories">
-						<div class="skill-category">
-							<h3>Frontend</h3>
-							<div class="skill-tags">
-								<span class="skill-tag">JavaScript</span>
-								<span class="skill-tag">TypeScript</span>
-								<span class="skill-tag">React</span>
-								<span class="skill-tag">HTML/CSS</span>
-								<span class="skill-tag">Tailwind CSS</span>
-								<span class="skill-tag">Responsive Design</span>
-							</div>
-						</div>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-link" aria-label="LinkedIn Profile">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
 
-						<div class="skill-category">
-							<h3>Backend</h3>
-							<div class="skill-tags">
-								<span class="skill-tag">Node.js</span>
-								<span class="skill-tag">Express</span>
-								<span class="skill-tag">RESTful APIs</span>
-								<span class="skill-tag">GraphQL</span>
-							</div>
-						</div>
+          <a href="https://github.com/yourprofile" target="_blank" class="social-link" aria-label="GitHub Profile">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+            <span>GitHub</span>
+          </a>
 
-						<div class="skill-category">
-							<h3>Database</h3>
-							<div class="skill-tags">
-								<span class="skill-tag">MongoDB</span>
-								<span class="skill-tag">SQL</span>
-								<span class="skill-tag">PostgreSQL</span>
-								<span class="skill-tag">Firebase</span>
-							</div>
-						</div>
+          <a href="mailto:your.email@example.com" class="social-link" aria-label="Email">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
 
-						<div class="skill-category">
-							<h3>DevOps & Tools</h3>
-							<div class="skill-tags">
-								<span class="skill-tag">Git</span>
-								<span class="skill-tag">AWS</span>
-								<span class="skill-tag">Docker</span>
-								<span class="skill-tag">CI/CD</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="projects">
-			<h2 class="section-title">Featured Projects</h2>
-			<div class="projects-grid">
-				<div class="project-card box">
-					<div class="project-image-container">
-						<div class="project-image-placeholder">
-							<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-								<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-								<circle cx="8.5" cy="8.5" r="1.5"></circle>
-								<polyline points="21 15 16 10 5 21"></polyline>
-							</svg>
-							<span>Project Image</span>
-						</div>
-					</div>
-					<div class="project-content">
-						<h3>E-Commerce Platform</h3>
-						<p>A full-featured online store with product management, shopping cart, and payment processing.</p>
-						<div class="project-tags">
-							<span class="project-tag">React</span>
-							<span class="project-tag">Node.js</span>
-							<span class="project-tag">MongoDB</span>
-						</div>
-						<a href="#" class="project-link">View Project</a>
-					</div>
-				</div>
-
-				<div class="project-card box">
-					<div class="project-image-container">
-						<div class="project-image-placeholder">
-							<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-								<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-								<circle cx="8.5" cy="8.5" r="1.5"></circle>
-								<polyline points="21 15 16 10 5 21"></polyline>
-							</svg>
-							<span>Project Image</span>
-						</div>
-					</div>
-					<div class="project-content">
-						<h3>Task Management App</h3>
-						<p>A collaborative task management application with real-time updates and team features.</p>
-						<div class="project-tags">
-							<span class="project-tag">TypeScript</span>
-							<span class="project-tag">Express</span>
-							<span class="project-tag">PostgreSQL</span>
-						</div>
-						<a href="#" class="project-link">View Project</a>
-					</div>
-				</div>
-
-				<div class="project-card box">
-					<div class="project-image-container">
-						<div class="project-image-placeholder">
-							<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-								<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-								<circle cx="8.5" cy="8.5" r="1.5"></circle>
-								<polyline points="21 15 16 10 5 21"></polyline>
-							</svg>
-							<span>Project Image</span>
-						</div>
-					</div>
-					<div class="project-content">
-						<h3>Portfolio Website</h3>
-						<p>A responsive portfolio website built with modern web technologies.</p>
-						<div class="project-tags">
-							<span class="project-tag">Astro</span>
-							<span class="project-tag">Tailwind CSS</span>
-							<span class="project-tag">JavaScript</span>
-						</div>
-						<a href="#" class="project-link">View Project</a>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<footer id="contact">
-			<div class="footer-content">
-				<h2 class="section-title">Get In Touch</h2>
-				<p class="footer-text">Feel free to reach out for collaborations or just a friendly hello</p>
-
-				<div class="social-links">
-					<a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-link" aria-label="LinkedIn Profile">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-							<rect x="2" y="9" width="4" height="12"></rect>
-							<circle cx="4" cy="4" r="2"></circle>
-						</svg>
-						<span>LinkedIn</span>
-					</a>
-
-					<a href="https://github.com/yourprofile" target="_blank" class="social-link" aria-label="GitHub Profile">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-						</svg>
-						<span>GitHub</span>
-					</a>
-
-					<a href="mailto:your.email@example.com" class="social-link" aria-label="Email">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-							<polyline points="22,6 12,13 2,6"></polyline>
-						</svg>
-						<span>Email</span>
-					</a>
-				</div>
-			</div>
-
-			<div class="copyright">
-				<p>&copy; {new Date().getFullYear()} Helder Lopez. All rights reserved.</p>
-			</div>
-		</footer>
-	</main>
+      <div class="copyright">
+        <p>&copy; {new Date().getFullYear()} Helder Lopez. All rights reserved.</p>
+      </div>
+    </footer>
+  </main>
 </div>
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px) grayscale(100%);
-		opacity: 0.5;
-	}
-
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
-
-	main {
-		min-height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 0 20px;
-		overflow-x: hidden;
-		width: 100%;
-	}
-
-	#home {
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-		height: 100vh;
-		width: 100%;
-		max-width: 1200px;
-		position: relative;
-		text-align: center;
-		scroll-margin-top: 80px;
-		overflow: hidden;
-	}
-
-	/* Floating elements styles */
-	.floating-elements {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
-		z-index: -1;
-	}
-
-	.floating-piece {
-		position: absolute;
-		opacity: 0.6;
-	}
-
-	.floating-1 {
-		top: 15%;
-		left: 10%;
-		width: 60px;
-		height: 60px;
-		animation: float 8s ease-in-out infinite;
-	}
-
-	.floating-2 {
-		top: 25%;
-		right: 15%;
-		width: 80px;
-		height: 80px;
-		animation: float 12s ease-in-out infinite 1s;
-	}
-
-	.floating-3 {
-		bottom: 20%;
-		left: 20%;
-		width: 50px;
-		height: 50px;
-		animation: float 10s ease-in-out infinite 2s;
-	}
-
-	.floating-4 {
-		top: 60%;
-		right: 10%;
-		width: 40px;
-		height: 40px;
-		animation: float 9s ease-in-out infinite 1.5s;
-	}
-
-	.floating-5 {
-		top: 75%;
-		right: 30%;
-		width: 35px;
-		height: 35px;
-		animation: float 11s ease-in-out infinite 0.5s;
-	}
-
-	.floating-6 {
-		top: 40%;
-		left: 5%;
-		width: 45px;
-		height: 45px;
-		animation: float 13s ease-in-out infinite 3s;
-	}
-
-	@keyframes float {
-		0% {
-			transform: translateY(0) rotate(0deg);
-		}
-		50% {
-			transform: translateY(-20px) rotate(10deg);
-		}
-		100% {
-			transform: translateY(0) rotate(0deg);
-		}
-	}
-
-	/* Add a second animation for some elements */
-	.floating-2, .floating-4, .floating-6 {
-		animation-name: float-alt;
-	}
-
-	@keyframes float-alt {
-		0% {
-			transform: translateY(0) rotate(0deg) scale(1);
-		}
-		33% {
-			transform: translateY(-15px) rotate(5deg) scale(1.05);
-		}
-		66% {
-			transform: translateY(10px) rotate(-5deg) scale(0.95);
-		}
-		100% {
-			transform: translateY(0) rotate(0deg) scale(1);
-		}
-	}
-
-	h1 {
-		font-size: 84px;
-		margin-top: 0;
-		margin-bottom: 0.2em;
-		font-weight: 800;
-		color: var(--text-primary);
-		letter-spacing: -0.02em;
-		line-height: 1.1;
-	}
-
-
-
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		color: var(--text-secondary);
-		margin: 0 0 1.5em 0;
-		font-size: 24px;
-		letter-spacing: 0.05em;
-	}
-
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: var(--text-primary);
-		font-size: 20px;
-	}
-
-	#home p {
-		color: var(--text-secondary);
-		font-size: 20px;
-		line-height: 1.5;
-		letter-spacing: -0.006em;
-		margin: 0;
-		max-width: 700px;
-	}
-
-	p {
-		color: var(--text-secondary);
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
-
-	code {
-		display: inline-block;
-		background: rgba(0, 0, 0, 0.05);
-		border-radius: 8px;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		padding: 6px 8px;
-	}
-
-	.box {
-		padding: 16px;
-		background: var(--bg-secondary);
-		border-radius: 16px;
-		border: 1px solid var(--border-color);
-	}
-
-
-
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
-
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
-
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
-
-	/* Section styles */
-	#about, #skills, #projects {
-		width: 100%;
-		max-width: 1200px;
-		padding: 80px 16px;
-		margin-top: 20px;
-		scroll-margin-top: 80px;
-	}
-
-	.section-title {
-		font-size: 32px;
-		margin-bottom: 2rem;
-		text-align: center;
-		color: var(--text-primary);
-		font-weight: 600;
-	}
-
-	.about-content {
-		display: flex;
-		flex-direction: column;
-		gap: 40px;
-		backdrop-filter: blur(10px);
-		background: var(--bg-secondary);
-		padding: 30px;
-	}
-
-	.profile-container {
-		display: flex;
-		gap: 30px;
-		align-items: flex-start;
-	}
-
-	.profile-image-container {
-		flex-shrink: 0;
-	}
-
-	.profile-image-placeholder {
-		width: 150px;
-		height: 150px;
-		border-radius: 50%;
-		background: rgba(0, 0, 0, 0.05);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		border: 2px dashed rgba(0, 0, 0, 0.2);
-		color: rgba(0, 0, 0, 0.5);
-		transition: all 0.3s ease;
-	}
-
-	.dark .profile-image-placeholder {
-		background: rgba(255, 255, 255, 0.05);
-		border: 2px dashed rgba(255, 255, 255, 0.2);
-		color: rgba(255, 255, 255, 0.5);
-	}
-
-	.profile-image-placeholder:hover {
-		background: rgba(0, 0, 0, 0.1);
-		cursor: pointer;
-	}
-
-	.dark .profile-image-placeholder:hover {
-		background: rgba(255, 255, 255, 0.1);
-	}
-
-	.add-photo-text {
-		font-size: 12px;
-		margin-top: 8px;
-	}
-
-	.about-text {
-		flex: 1;
-	}
-
-	.about-text p {
-		margin-bottom: 1rem;
-		font-size: 17px;
-		line-height: 1.6;
-	}
-
-	.skills-section {
-		margin-top: 20px;
-	}
-
-	.section-subtitle {
-		font-size: 24px;
-		margin-bottom: 20px;
-		color: var(--text-primary);
-		font-weight: 600;
-	}
-
-	/* Experience section styles */
-	.experience-section {
-		margin-top: 30px;
-		margin-bottom: 40px;
-	}
-
-	.timeline {
-		position: relative;
-		margin-left: 20px;
-		padding-left: 20px;
-	}
-
-	.timeline::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 5px;
-		height: calc(100% - 10px);
-		width: 2px;
-		background: var(--primary);
-	}
-
-	.timeline-item {
-		position: relative;
-		margin-bottom: 30px;
-	}
-
-	.timeline-dot {
-		position: absolute;
-		left: -26px;
-		top: 5px;
-		width: 12px;
-		height: 12px;
-		border-radius: 50%;
-		background: var(--primary);
-		border: 2px solid white;
-	}
-
-	.dark .timeline-dot {
-		border-color: var(--bg-primary);
-	}
-
-	.timeline-date {
-		font-weight: 600;
-		color: var(--primary);
-		margin-bottom: 5px;
-		font-size: 14px;
-	}
-
-	.timeline-content {
-		padding-bottom: 10px;
-	}
-
-	.timeline-content h4 {
-		font-size: 18px;
-		margin-bottom: 5px;
-		color: var(--text-primary);
-		font-weight: 600;
-	}
-
-	.timeline-content h5 {
-		font-size: 16px;
-		margin-bottom: 10px;
-		color: var(--text-secondary);
-		font-weight: 500;
-		font-style: italic;
-	}
-
-	.timeline-content p {
-		font-size: 15px;
-		line-height: 1.5;
-	}
-
-	.cv-download {
-		margin-top: 30px;
-		display: flex;
-		justify-content: center;
-	}
-
-	.cv-button {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		padding: 10px 20px;
-		background: var(--primary);
-		color: var(--bg-primary);
-		border-radius: 8px;
-		text-decoration: none;
-		font-weight: 600;
-		transition: all 0.3s ease;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	}
-
-	.cv-button:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-	}
-
-	.skill-categories {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 30px;
-		width: 100%;
-	}
-
-	.skill-category {
-		flex: 1 1 calc(50% - 30px);
-		min-width: 250px;
-	}
-
-	.skill-category h3 {
-		font-size: 20px;
-		margin-bottom: 1rem;
-		color: var(--text-primary);
-		position: relative;
-		display: inline-block;
-	}
-
-	.skill-category h3:after {
-		content: '';
-		position: absolute;
-		bottom: -5px;
-		left: 0;
-		width: 40px;
-		height: 3px;
-		background: var(--primary);
-		border-radius: 3px;
-	}
-
-	/* Projects section styles */
-	.projects-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		gap: 30px;
-		width: 100%;
-	}
-
-	.project-card {
-		display: flex;
-		flex-direction: column;
-		backdrop-filter: blur(10px);
-		background: var(--bg-secondary);
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-		height: 100%;
-		overflow: hidden;
-		border-radius: 16px;
-		padding: 0;
-	}
-
-	.project-card:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-	}
-
-	.project-image-container {
-		width: 100%;
-		height: 200px;
-		overflow: hidden;
-	}
-
-	.project-image-placeholder {
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, 0.05);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		color: rgba(0, 0, 0, 0.5);
-		transition: all 0.3s ease;
-	}
-
-	.dark .project-image-placeholder {
-		background: rgba(255, 255, 255, 0.05);
-		color: rgba(255, 255, 255, 0.5);
-	}
-
-	.project-image-placeholder span {
-		margin-top: 8px;
-		font-size: 14px;
-	}
-
-	.project-content {
-		padding: 20px;
-	}
-
-	.project-content h3 {
-		font-size: 20px;
-		margin-bottom: 10px;
-		color: var(--text-primary);
-	}
-
-	.project-card p {
-		margin-bottom: 20px;
-		flex-grow: 1;
-	}
-
-	.project-tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 8px;
-		margin-bottom: 15px;
-	}
-
-	.project-tag {
-		padding: 4px 10px;
-		background: rgba(0, 0, 0, 0.05);
-		color: var(--text-secondary);
-		border-radius: 20px;
-		font-size: 12px;
-		font-weight: 600;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-	}
-
-	.project-link {
-		display: inline-block;
-		padding: 8px 16px;
-		background: var(--primary);
-		color: var(--bg-primary);
-		border-radius: 8px;
-		text-decoration: none;
-		font-weight: 600;
-		align-self: flex-start;
-		transition: all 0.3s ease;
-	}
-
-	.project-link:hover {
-		opacity: 0.9;
-	}
-
-	/* Footer styles */
-	#contact {
-		width: 100%;
-		max-width: 1200px;
-		padding: 80px 16px 40px;
-		margin-top: 40px;
-		scroll-margin-top: 80px;
-		text-align: center;
-	}
-
-	.footer-text {
-		max-width: 600px;
-		margin: 0 auto 40px;
-		font-size: 18px;
-		color: var(--text-secondary);
-	}
-
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 30px;
-		margin: 30px 0;
-	}
-
-	.social-link {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 8px;
-		color: var(--text-primary);
-		text-decoration: none;
-		transition: transform 0.3s ease, color 0.3s ease;
-	}
-
-	.social-link:hover {
-		transform: translateY(-5px);
-		color: var(--primary);
-	}
-
-	.social-link svg {
-		width: 28px;
-		height: 28px;
-		transition: stroke 0.3s ease;
-	}
-
-	.social-link:hover svg {
-		stroke: var(--primary);
-	}
-
-	.social-link span {
-		font-size: 14px;
-		font-weight: 500;
-	}
-
-	.copyright {
-		margin-top: 60px;
-		padding-top: 20px;
-		border-top: 1px solid var(--border-color);
-		font-size: 14px;
-		color: var(--text-secondary);
-	}
-
-	.skill-tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
-	}
-
-	.skill-tag {
-		padding: 6px 12px;
-		background: var(--primary);
-		color: var(--bg-primary);
-		border-radius: 20px;
-		font-size: 14px;
-		font-weight: 600;
-	}
-
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
-
-		#home {
-			display: block;
-			padding-top: 10%;
-			height: auto;
-			min-height: 100vh;
-		}
-
-		h1 {
-			font-size: 56px;
-			margin-bottom: 0.2em;
-			line-height: 1.1;
-		}
-
-		pre {
-			font-size: 20px;
-		}
-
-		#home p {
-			font-size: 18px;
-		}
-
-
-
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
-
-		h1 {
-			line-height: 1.5;
-		}
-
-		.profile-container {
-			flex-direction: column;
-			align-items: center;
-			text-align: center;
-		}
-
-		.timeline {
-			margin-left: 10px;
-			padding-left: 15px;
-		}
-
-		.timeline-dot {
-			left: -21px;
-		}
-
-		.about-text {
-			flex: 1;
-		}
-
-		.skill-category {
-			flex: 1 1 100%;
-		}
-
-		.social-links {
-			flex-wrap: wrap;
-			gap: 20px;
-		}
-
-		.social-link {
-			width: 80px;
-		}
-	}
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(100px) grayscale(100%);
+    opacity: 0.5;
+  }
+
+  #container {
+    font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+    height: 100%;
+  }
+
+  main {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  #home {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px;
+    height: 100vh;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    text-align: center;
+    scroll-margin-top: 80px;
+    overflow: hidden;
+  }
+
+  /* Floating elements styles */
+  .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .floating-piece {
+    position: absolute;
+    opacity: 0.6;
+  }
+
+  .floating-1 {
+    top: 15%;
+    left: 10%;
+    width: 60px;
+    height: 60px;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .floating-2 {
+    top: 25%;
+    right: 15%;
+    width: 80px;
+    height: 80px;
+    animation: float 12s ease-in-out infinite 1s;
+  }
+
+  .floating-3 {
+    bottom: 20%;
+    left: 20%;
+    width: 50px;
+    height: 50px;
+    animation: float 10s ease-in-out infinite 2s;
+  }
+
+  .floating-4 {
+    top: 60%;
+    right: 10%;
+    width: 40px;
+    height: 40px;
+    animation: float 9s ease-in-out infinite 1.5s;
+  }
+
+  .floating-5 {
+    top: 75%;
+    right: 30%;
+    width: 35px;
+    height: 35px;
+    animation: float 11s ease-in-out infinite 0.5s;
+  }
+
+  .floating-6 {
+    top: 40%;
+    left: 5%;
+    width: 45px;
+    height: 45px;
+    animation: float 13s ease-in-out infinite 3s;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(10deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+
+  /* Add a second animation for some elements */
+  .floating-2,
+  .floating-4,
+  .floating-6 {
+    animation-name: float-alt;
+  }
+
+  @keyframes float-alt {
+    0% {
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+    33% {
+      transform: translateY(-15px) rotate(5deg) scale(1.05);
+    }
+    66% {
+      transform: translateY(10px) rotate(-5deg) scale(0.95);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+  }
+
+  h1 {
+    font-size: 84px;
+    margin-top: 0;
+    margin-bottom: 0.2em;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  pre {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+    font-weight: normal;
+    color: var(--text-secondary);
+    margin: 0 0 1.5em 0;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+  }
+
+  h2 {
+    margin: 0 0 1em;
+    font-weight: normal;
+    color: var(--text-primary);
+    font-size: 20px;
+  }
+
+  #home p {
+    color: var(--text-secondary);
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: -0.006em;
+    margin: 0;
+    max-width: 700px;
+  }
+
+  p {
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.006em;
+    margin: 0;
+  }
+
+  code {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 6px 8px;
+  }
+
+  .box {
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+  }
+
+  #news {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    max-width: 300px;
+    text-decoration: none;
+    transition: background 0.2s;
+    backdrop-filter: blur(50px);
+  }
+
+  #news:hover {
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  @media screen and (max-height: 368px) {
+    #news {
+      display: none;
+    }
+  }
+
+  /* Section styles */
+  #about,
+  #skills,
+  #projects {
+    width: 100%;
+    max-width: 1200px;
+    padding: 80px 16px;
+    margin-top: 20px;
+    scroll-margin-top: 80px;
+  }
+
+  .section-title {
+    font-size: 32px;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    backdrop-filter: blur(10px);
+    background: var(--bg-secondary);
+    padding: 30px;
+  }
+
+  .profile-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+
+  .profile-image-container {
+    flex-shrink: 0;
+  }
+
+  .profile-image-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .dark .profile-image-placeholder {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .profile-image-placeholder:hover {
+    background: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .dark .profile-image-placeholder:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .add-photo-text {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .about-text {
+    flex: 1;
+  }
+
+  .about-text p {
+    margin-bottom: 1rem;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .skills-section {
+    margin-top: 20px;
+  }
+
+  .section-subtitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* Experience section styles */
+  .skill-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .experience-section {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+
+  .timeline {
+    position: relative;
+    margin-left: 20px;
+    padding-left: 20px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: calc(100% - 10px);
+    width: 2px;
+    background: var(--primary);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -26px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid white;
+  }
+
+  .dark .timeline-dot {
+    border-color: var(--bg-primary);
+  }
+
+  .timeline-date {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .timeline-content {
+    padding-bottom: 10px;
+  }
+
+  .timeline-content h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .timeline-content h5 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .timeline-content p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .cv-download {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cv-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: var(--bg-primary);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .cv-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .skill-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    justify-content: left;
+    margin-top: 20px;
+  }
+
+  /* Projects section styles */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    background: var(--bg-secondary);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .project-image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .project-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .dark .project-image-placeholder {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .project-image-placeholder span {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .project-content {
+    padding: 20px;
+  }
+
+  .project-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+  }
+
+  .project-card p {
+    margin-bottom: 0;
+    flex-grow: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+  }
+
+  .project-tag {
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-secondary);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Footer styles */
+  #contact {
+    width: 100%;
+    max-width: 1200px;
+    padding: 80px 16px 40px;
+    margin-top: 40px;
+    scroll-margin-top: 80px;
+    text-align: center;
+  }
+
+  .footer-text {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-size: 18px;
+    color: var(--text-secondary);
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+  }
+
+  .social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .social-link:hover {
+    transform: translateY(-5px);
+    color: var(--primary);
+  }
+
+  .social-link svg {
+    width: 28px;
+    height: 28px;
+    transition: stroke 0.3s ease;
+  }
+
+  .social-link:hover svg {
+    stroke: var(--primary);
+  }
+
+  .social-link span {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .copyright {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* Skill tags now use project-tag styling */
+  .skill-tags-container .project-tag {
+    font-size: 14px;
+    padding: 6px 12px;
+    margin: 2px;
+  }
+
+  @media screen and (max-width: 768px) {
+    #container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #home {
+      display: block;
+      padding-top: 10%;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 56px;
+      margin-bottom: 0.2em;
+      line-height: 1.1;
+    }
+
+    pre {
+      font-size: 20px;
+    }
+
+    #home p {
+      font-size: 18px;
+    }
+
+    #news {
+      right: 16px;
+      left: 16px;
+      bottom: 2.5rem;
+      max-width: 100%;
+    }
+
+    h1 {
+      line-height: 1.5;
+    }
+
+    .profile-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .timeline {
+      margin-left: 10px;
+      padding-left: 15px;
+    }
+
+    .timeline-dot {
+      left: -21px;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .social-links {
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .social-link {
+      width: 80px;
+    }
+  }
 </style>
