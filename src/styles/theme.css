@@ -28,10 +28,10 @@
   --light-indicator: rgba(255, 255, 255, 0.9); /* For dark mode indicators */
   --dark-indicator: rgba(0, 0, 0, 0.8); /* For light mode indicators */
 
-  /* Dark mode floating piece colors (inverted but lighter) */
-  --floating-color-1: #ffc107; /* Amber yellow */
-  --floating-color-2: #2196f3; /* Bright blue */
-  --floating-color-3: #9c27b0; /* Medium purple */
+  /* Dark mode floating piece colors (same as light mode) */
+  --floating-color-1: #ffecb3; /* Light yellow */
+  --floating-color-2: #e1f5fe; /* Light blue */
+  --floating-color-3: #f3e5f5; /* Light purple */
 }
 
 html,
