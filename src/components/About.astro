@@ -1,0 +1,304 @@
+---
+// Work experience data
+const workExperience = [
+  {
+    period: 'April 2021 - Present',
+    title: 'Senior Fullstack Developer',
+    company: 'Catalyst Mexico',
+    description:
+      'Lead development of web and web3 applications using React, Node.js, and AWS. Implemented CI/CD pipelines and mentored junior developers.'
+  },
+  {
+    period: 'Feb 2020 - Oct 2020',
+    title: 'Web App Developer',
+    company: 'Spyral Systems',
+    description:
+      'Developed web applications using JavaScript, jQuery, HTML/CSS, and .NET Framework. Integrated with RESTful APIs and SQL Server databases.'
+  },
+  {
+    period: 'Jun 2019 - Dic 2019',
+    title: 'Technical Support & Tester',
+    company: 'Sys21 Software Agricola',
+    description: 'Provided technical support to customers and performed testing for software products built with Visual Basic 8.'
+  }
+];
+
+// Skills data
+const skills = ['JavaScript', 'TypeScript', 'React', 'Node.js', 'PostgreSQL', 'Docker'];
+---
+
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="about-content box">
+    <div class="profile-container">
+      <div class="profile-image-container">
+        <div class="profile-image-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100"
+            height="100"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <p class="add-photo-text">Add Photo</p>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>
+          <strong>I am a Full-Stack Software Engineer</strong> passionate about building scalable web applications, optimizing system performance,
+          and delivering high-quality, reliable code. Strong expertise in end-to-end development, from designing intuitive UIs to architecting
+          robust backend systems. Focused on efficient problem-solving, clean architecture, and seamless user experiences—whether working with
+          blockchain integrations, or high-traffic APIs.
+        </p>
+        <p>
+          I enjoy solving complex problems and turning ideas into reality through clean, efficient code. My approach combines technical
+          expertise with a strong focus on user experience and business needs.
+        </p>
+      </div>
+    </div>
+
+    <div class="skills-section">
+      <h3 class="section-subtitle">Skills & Technologies</h3>
+      <div class="skill-tags-container">
+        {skills.map((skill) => <span class="project-tag">{skill}</span>)}
+      </div>
+    </div>
+
+    <div class="experience-section">
+      <h3 class="section-subtitle">Experience</h3>
+      <div class="timeline">
+        {
+          workExperience.map((job) => (
+            <div class="timeline-item">
+              <div class="timeline-dot" />
+              <div class="timeline-date">{job.period}</div>
+              <div class="timeline-content">
+                <h4>{job.title}</h4>
+                <h5>{job.company}</h5>
+                <p>{job.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .box {
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+  }
+  /* Section styles */
+  #about,
+  #skills,
+  #projects {
+    width: 100%;
+    max-width: 1200px;
+    padding: 80px 16px;
+    margin-top: 20px;
+    scroll-margin-top: 80px;
+  }
+
+  .section-title {
+    font-size: 32px;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    backdrop-filter: blur(10px);
+    background: var(--bg-secondary);
+    padding: 30px;
+  }
+
+  .profile-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  .profile-image-container {
+    flex-shrink: 0;
+  }
+
+  .profile-image-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .dark .profile-image-placeholder {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .profile-image-placeholder:hover {
+    background: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .dark .profile-image-placeholder:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .add-photo-text {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+  .about-text {
+    flex: 1;
+  }
+
+  .about-text p {
+    margin-bottom: 1rem;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .skills-section {
+    margin-top: 20px;
+  }
+
+  .section-subtitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* Experience section styles */
+  .skill-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .experience-section {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+
+  .timeline {
+    position: relative;
+    margin-left: 20px;
+    padding-left: 20px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: calc(100% - 10px);
+    width: 2px;
+    background: var(--primary);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -26px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid white;
+  }
+
+  .dark .timeline-dot {
+    border-color: var(--bg-primary);
+  }
+
+  .timeline-date {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .timeline-content {
+    padding-bottom: 10px;
+  }
+
+  .timeline-content h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .timeline-content h5 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .timeline-content p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .skill-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    justify-content: left;
+    margin-top: 20px;
+  }
+
+  /* Project tag styles for skills section */
+  .project-tag {
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-secondary);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Skill tags now use project-tag styling */
+  .skill-tags-container .project-tag {
+    font-size: 14px;
+    padding: 6px 12px;
+    margin: 2px;
+  }
+</style>
