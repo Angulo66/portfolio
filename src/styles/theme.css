@@ -9,6 +9,11 @@
   --border-color: rgba(0, 0, 0, 0.1);
   --light-indicator: rgba(255, 255, 255, 0.9); /* For dark mode indicators */
   --dark-indicator: rgba(0, 0, 0, 0.8); /* For light mode indicators */
+
+  /* Light mode floating piece colors */
+  --floating-color-1: #ffecb3; /* Light yellow */
+  --floating-color-2: #e1f5fe; /* Light blue */
+  --floating-color-3: #f3e5f5; /* Light purple */
 }
 
 .dark {
@@ -22,6 +27,11 @@
   --border-color: rgba(255, 255, 255, 0.1);
   --light-indicator: rgba(255, 255, 255, 0.9); /* For dark mode indicators */
   --dark-indicator: rgba(0, 0, 0, 0.8); /* For light mode indicators */
+
+  /* Dark mode floating piece colors (inverted) */
+  --floating-color-1: #664500; /* Dark yellow */
+  --floating-color-2: #01579b; /* Dark blue */
+  --floating-color-3: #4a148c; /* Dark purple */
 }
 
 html,

@@ -14,7 +14,7 @@
   <!-- Floating Elements -->
   <div class="floating-elements">
     <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-1" viewBox="0 0 50 40">
-      <g fill="var(--primary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+      <g fill="var(--floating-color-1)" stroke="currentColor" stroke-opacity="0.3" stroke-linejoin="round" stroke-width="1.23">
         <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
         ></path>
         <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
@@ -22,7 +22,7 @@
     </svg>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-2" viewBox="0 0 50 40">
-      <g fill="var(--secondary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+      <g fill="var(--floating-color-2)" stroke="currentColor" stroke-opacity="0.3" stroke-linejoin="round" stroke-width="1.23">
         <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
         ></path>
         <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
@@ -30,7 +30,7 @@
     </svg>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-3" viewBox="0 0 50 40">
-      <g fill="var(--accent)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+      <g fill="var(--floating-color-3)" stroke="currentColor" stroke-opacity="0.3" stroke-linejoin="round" stroke-width="1.23">
         <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
         ></path>
         <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
@@ -38,7 +38,7 @@
     </svg>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-4" viewBox="0 0 50 40">
-      <g fill="var(--primary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+      <g fill="var(--floating-color-1)" stroke="currentColor" stroke-opacity="0.3" stroke-linejoin="round" stroke-width="1.23">
         <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
         ></path>
         <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
@@ -46,7 +46,7 @@
     </svg>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-5" viewBox="0 0 50 40">
-      <g fill="var(--secondary)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+      <g fill="var(--floating-color-2)" stroke="currentColor" stroke-opacity="0.3" stroke-linejoin="round" stroke-width="1.23">
         <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
         ></path>
         <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
@@ -54,7 +54,7 @@
     </svg>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-6" viewBox="0 0 50 40">
-      <g fill="var(--accent)" stroke="#555555" stroke-linejoin="round" stroke-width="1.23">
+      <g fill="var(--floating-color-3)" stroke="currentColor" stroke-opacity="0.3" stroke-linejoin="round" stroke-width="1.23">
         <path d="M48.75 26.05c0 7.13-10.63 12.9-23.75 12.9S1.25 33.18 1.25 26.05v-9.66S15.16 17.96 25 17.96s23.75-1.57 23.75-1.57v9.66Z"
         ></path>
         <ellipse cx="25" cy="14.73" rx="23.75" ry="13.68"></ellipse>
@@ -96,7 +96,8 @@
 
   .floating-piece {
     position: absolute;
-    opacity: 0.6;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, fill 0.3s ease;
   }
 
   .floating-1 {
