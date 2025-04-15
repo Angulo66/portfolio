@@ -165,12 +165,18 @@ const isHomePage = currentPath === '/' || currentPath === '';
 </style>
 
 <script>
+  // Declare global types
+  declare global {
+    interface Window {
+      updateActiveNavLink?: () => void;
+    }
+  }
+
   // Navigation functionality and scroll effects
   document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('nav.hidden.md\\:block');
     const navLinks = document.querySelectorAll('[data-nav-link]');
     const mobileNav = document.querySelector('nav.md\\:hidden');
-    const themeToggle = document.getElementById('theme-toggle');
 
     // Add shadow to mobile nav when scrolling
     window.addEventListener('scroll', () => {
@@ -194,29 +200,12 @@ const isHomePage = currentPath === '/' || currentPath === '';
       updateActiveNavLink();
     });
 
-    // Theme toggle functionality
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-        // Update theme
-        document.documentElement.classList.remove('light', 'dark');
-        document.documentElement.classList.add(newTheme);
-        localStorage.setItem('theme', newTheme);
-
-        // Update toggle button icon
-        const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
-        const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-        themeToggle.innerHTML = newTheme === 'dark' ? sunIcon : moonIcon;
-
-        // Update nav indicators after theme change
-        setTimeout(updateActiveNavLink, 50);
-      });
-    }
+    // Theme toggle is now handled in Welcome.astro
 
     // Update active nav link based on scroll position
     function updateActiveNavLink() {
+      // Make this function globally available
+      window.updateActiveNavLink = updateActiveNavLink;
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
