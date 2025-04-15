@@ -136,6 +136,21 @@ const skills = [
           ))
         }
       </div>
+
+      <!-- CV Download Button (visible only on mobile) -->
+      <div class="cv-download-mobile">
+        <a href="/resume.pdf" target="_blank" class="cv-button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            ></path>
+          </svg>
+          Download CV
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -420,6 +435,32 @@ const skills = [
     animation-play-state: paused;
   }
 
+  /* CV Download Button Styles */
+  .cv-download-mobile {
+    display: none; /* Hidden by default */
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .cv-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: var(--bg-primary);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .cv-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .profile-container {
@@ -455,6 +496,11 @@ const skills = [
 
     .skill-name {
       font-size: 14px;
+    }
+
+    /* Show CV download button on mobile */
+    .cv-download-mobile {
+      display: flex;
     }
   }
 </style>
