@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background shape with rounded corners -->
+  <rect width="512" height="512" rx="100" fill="#333333"/>
+  
+  <!-- H letter in negative space -->
+  <path d="M160 120V392H208V280H304V392H352V120H304V232H208V120H160Z" fill="white"/>
+</svg>
