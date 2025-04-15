@@ -5,15 +5,35 @@ const isHomePage = currentPath === '/' || currentPath === '';
 ---
 
 <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 flex justify-center pt-8">
-  <!-- Mobile Menu Button (only visible on mobile) -->
-  <button
-    id="mobile-menu-button"
-    class="md:hidden fixed top-4 right-4 focus:outline-none backdrop-blur-sm p-2 rounded-full"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-    </svg>
-  </button>
+  <!-- Mobile Navigation (only visible on mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 w-full backdrop-blur-md shadow-lg z-50 transition-all duration-300">
+    <div class="flex justify-around items-center py-3 px-4">
+      <a href="#home" class="flex flex-col items-center text-xs transition-colors duration-300" aria-label="Home">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="#about" class="flex flex-col items-center text-xs transition-colors duration-300" aria-label="About">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        <span>About</span>
+      </a>
+      <a href="#projects" class="flex flex-col items-center text-xs transition-colors duration-300" aria-label="Projects">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+        <span>Projects</span>
+      </a>
+      <a href="#contact" class="flex flex-col items-center text-xs transition-colors duration-300" aria-label="Contact">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <span>Contact</span>
+      </a>
+    </div>
+  </nav>
 
   <!-- Centered Desktop Navigation -->
   <nav
@@ -84,94 +104,7 @@ const isHomePage = currentPath === '/' || currentPath === '';
     </div>
   </nav>
 
-  <!-- Mobile Navigation Menu -->
-  <div id="mobile-menu" class="hidden md:hidden fixed top-0 left-0 w-full h-full backdrop-blur-md z-50">
-    <div class="absolute top-4 right-4">
-      <button id="close-menu-button" class="focus:outline-none p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
-    <nav class="flex items-center justify-center h-full">
-      <ul class="space-y-6 text-center">
-        <li class="flex justify-center">
-          <button
-            id="mobile-theme-toggle"
-            class="transition-colors duration-300 p-2 rounded-full"
-            aria-label="Toggle dark mode"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-          </button>
-        </li>
-        <li>
-          <a href="#home" class="block text-2xl transition-colors duration-300 py-2 relative group">
-            Start
-            <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-24 rounded-full shadow-glow nav-indicator"
-            ></span>
-          </a>
-        </li>
-        <li>
-          <a
-            href={isHomePage ? '#about' : '/'}
-            class="block text-2xl transition-colors duration-300 py-2 relative group"
-          >
-            About
-            <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-24 rounded-full shadow-glow nav-indicator"
-            ></span>
-          </a>
-        </li>
 
-        <li>
-          <a
-            href={isHomePage ? '#projects' : '/#projects'}
-            class="block text-2xl transition-colors duration-300 py-2 relative group"
-          >
-            Projects
-            <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-24 rounded-full shadow-glow nav-indicator"
-            ></span>
-          </a>
-        </li>
-
-        <li>
-          <a
-            href={isHomePage ? '#contact' : '/#contact'}
-            class="block text-2xl transition-colors duration-300 py-2 relative group"
-          >
-            Contact
-            <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-24 rounded-full shadow-glow nav-indicator"
-            ></span>
-          </a>
-        </li>
-
-        <!-- CV/Resume Link -->
-        <li>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            class="text-2xl transition-colors duration-300 py-2 relative group flex items-center justify-center"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              ></path>
-            </svg>
-            Download CV
-            <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-24 rounded-full shadow-glow nav-indicator"
-            ></span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
 </header>
 
 <style>
@@ -232,40 +165,38 @@ const isHomePage = currentPath === '/' || currentPath === '';
 </style>
 
 <script>
-  // Mobile menu toggle functionality and scroll effects
+  // Navigation functionality and scroll effects
   document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('nav.hidden.md\\:block');
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const closeMenuButton = document.getElementById('close-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.querySelectorAll('[data-nav-link]');
-    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    const mobileNav = document.querySelector('nav.md\\:hidden');
+    const themeToggle = document.getElementById('theme-toggle');
 
-    // Mobile menu toggle
-    if (mobileMenuButton && mobileMenu && closeMenuButton) {
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-      });
+    // Add shadow to mobile nav when scrolling
+    window.addEventListener('scroll', () => {
+      // Desktop nav shadow
+      if (window.scrollY > 50) {
+        if (nav) nav.classList.add('shadow-xl');
+      } else {
+        if (nav) nav.classList.remove('shadow-xl');
+      }
 
-      closeMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        document.body.style.overflow = ''; // Re-enable scrolling
-      });
+      // Mobile nav shadow
+      if (mobileNav) {
+        if (window.scrollY > 50) {
+          mobileNav.classList.add('shadow-xl');
+        } else {
+          mobileNav.classList.remove('shadow-xl');
+        }
+      }
 
-      // Close menu when clicking on a link
-      const mobileLinks = mobileMenu.querySelectorAll('a');
-      mobileLinks.forEach((link) => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          document.body.style.overflow = ''; // Re-enable scrolling
-        });
-      });
-    }
+      // Update active nav link
+      updateActiveNavLink();
+    });
 
-    // Sync mobile theme toggle with main theme toggle
-    if (mobileThemeToggle) {
-      mobileThemeToggle.addEventListener('click', () => {
+    // Theme toggle functionality
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
@@ -274,19 +205,10 @@ const isHomePage = currentPath === '/' || currentPath === '';
         document.documentElement.classList.add(newTheme);
         localStorage.setItem('theme', newTheme);
 
-        // Update both toggle buttons
-        const themeToggle = document.getElementById('theme-toggle');
+        // Update toggle button icon
         const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
         const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-
-        if (themeToggle) {
-          themeToggle.innerHTML = newTheme === 'dark' ? sunIcon : moonIcon;
-        }
-
-        const mobileSunIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
-        const mobileMoonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-
-        mobileThemeToggle.innerHTML = newTheme === 'dark' ? mobileSunIcon : mobileMoonIcon;
+        themeToggle.innerHTML = newTheme === 'dark' ? sunIcon : moonIcon;
 
         // Update nav indicators after theme change
         setTimeout(updateActiveNavLink, 50);
@@ -322,7 +244,6 @@ const isHomePage = currentPath === '/' || currentPath === '';
       // Special case for contact section when scrolled to bottom or near contact
       if (scrolledToBottom || (contactSection && scrollPosition >= contactSection.top - 100)) {
         currentSection = 'contact';
-        // Contact section is active
       } else {
         // Normal section detection
         for (const section of sections) {
@@ -334,9 +255,8 @@ const isHomePage = currentPath === '/' || currentPath === '';
         }
       }
 
-      // Update nav links
+      // Update desktop nav links
       if (currentSection) {
-
         navLinks.forEach((link) => {
           const href = link.getAttribute('href');
           const indicator = link.querySelector('.nav-indicator') as HTMLElement | null;
@@ -344,8 +264,6 @@ const isHomePage = currentPath === '/' || currentPath === '';
           // Improved handling for all sections including contact
           const isContactActive = currentSection === 'contact' && href && href.includes('#contact');
           const isOtherSectionActive = currentSection !== 'contact' && href && href.includes('#' + currentSection);
-
-
 
           if (isContactActive || isOtherSectionActive) {
             if (indicator) {
@@ -361,36 +279,48 @@ const isHomePage = currentPath === '/' || currentPath === '';
             if (indicator) indicator.style.width = '0';
           }
         });
+
+        // Update mobile nav icons (highlight active section)
+        if (mobileNav) {
+          const mobileLinks = mobileNav.querySelectorAll('a');
+          mobileLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href && href.includes('#' + currentSection)) {
+              link.classList.add('text-primary');
+              link.classList.add('font-semibold');
+            } else {
+              link.classList.remove('text-primary');
+              link.classList.remove('font-semibold');
+            }
+          });
+        }
       }
     }
-
-    // Handle scroll events
-    window.addEventListener('scroll', () => {
-      // Add background to nav when scrolling
-      if (window.scrollY > 50) {
-        if (nav) nav.classList.add('shadow-xl');
-      } else {
-        if (nav) nav.classList.remove('shadow-xl');
-      }
-
-      // Update active nav link
-      updateActiveNavLink();
-    });
 
     // Initial check for active link
     updateActiveNavLink();
 
-    // Update nav indicators when theme changes
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        // Small delay to ensure theme has changed before updating indicators
-        setTimeout(updateActiveNavLink, 50);
+    // Add active section highlighting to mobile nav links
+    if (mobileNav) {
+      const mobileLinks = mobileNav.querySelectorAll('a');
+      mobileLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const targetId = link.getAttribute('href');
+          if (targetId && targetId.startsWith('#')) {
+            e.preventDefault();
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, '', targetId);
+              setTimeout(updateActiveNavLink, 100);
+            }
+          }
+        });
       });
     }
 
-    // Handle hash links smoothly
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    // Handle hash links smoothly for desktop nav
+    document.querySelectorAll('nav.md\\:block a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
         const targetId = this.getAttribute('href') || '';
         if (targetId === '#') return;

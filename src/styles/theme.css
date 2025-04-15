@@ -146,16 +146,18 @@ body {
   color: var(--text-primary);
 }
 
-:root:not(.dark) #mobile-menu {
+/* Mobile navbar styling */
+:root:not(.dark) nav.md\:hidden {
   background-color: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-:root:not(.dark) #mobile-menu a,
-:root:not(.dark) #close-menu-button {
+:root:not(.dark) nav.md\:hidden a {
   color: var(--text-primary) !important;
 }
 
-:root:not(.dark) #mobile-menu a:hover {
+:root:not(.dark) nav.md\:hidden a:hover,
+:root:not(.dark) nav.md\:hidden a.active {
   color: var(--primary) !important;
 }
 
@@ -174,9 +176,20 @@ body {
   color: var(--primary) !important;
 }
 
-/* Improve contrast for mobile menu */
-.dark #mobile-menu {
+/* Improve contrast for mobile navbar */
+.dark nav.md\:hidden {
   background-color: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure mobile navbar follows the theme */
+html.dark nav.md\:hidden a {
+  color: var(--text-primary) !important;
+}
+
+html.dark nav.md\:hidden a:hover,
+html.dark nav.md\:hidden a.active {
+  color: var(--primary) !important;
 }
 
 /* Adjust background image in dark mode */
