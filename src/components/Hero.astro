@@ -2,6 +2,15 @@
 ---
 
 <section id="home">
+  <!-- Mobile Theme Toggle Button (only visible on mobile) -->
+  <button
+    id="mobile-hero-theme-toggle"
+    class="hidden md:hidden fixed top-4 right-4 z-50 p-2 rounded-full bg-white bg-opacity-80 backdrop-blur-sm transition-all duration-300 shadow-md hover:shadow-lg text-text-primary"
+    aria-label="Toggle dark mode"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  </button>
+
   <!-- Floating Elements -->
   <div class="floating-elements">
     <svg xmlns="http://www.w3.org/2000/svg" class="floating-piece floating-1" viewBox="0 0 50 40">
@@ -229,3 +238,71 @@
     }
   }
 </style>
+
+<script>
+  // Initialize mobile theme toggle button
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileThemeToggle = document.getElementById('mobile-hero-theme-toggle');
+
+    // Show the toggle button only on mobile
+    if (window.innerWidth <= 768) {
+      mobileThemeToggle?.classList.remove('hidden');
+    }
+
+    // Update button icon based on current theme
+    const updateMobileToggleIcon = () => {
+      if (!mobileThemeToggle) return;
+
+      const isDark = document.documentElement.classList.contains('dark');
+      const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+      const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+
+      mobileThemeToggle.innerHTML = isDark ? sunIcon : moonIcon;
+
+      // Update background color based on theme
+      if (isDark) {
+        mobileThemeToggle.classList.add('bg-gray-800');
+        mobileThemeToggle.classList.remove('bg-white');
+      } else {
+        mobileThemeToggle.classList.add('bg-white');
+        mobileThemeToggle.classList.remove('bg-gray-800');
+      }
+    };
+
+    // Initial icon update
+    updateMobileToggleIcon();
+
+    // Add click event listener
+    mobileThemeToggle?.addEventListener('click', () => {
+      // Use the global applyTheme function from Welcome.astro
+      if (typeof window.applyTheme === 'function') {
+        const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        window.applyTheme(newTheme);
+
+        // Update the icon after theme change
+        updateMobileToggleIcon();
+      }
+    });
+
+    // Update visibility on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= 768) {
+        mobileThemeToggle?.classList.remove('hidden');
+      } else {
+        mobileThemeToggle?.classList.add('hidden');
+      }
+    });
+
+    // Listen for theme changes from other toggle buttons
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          updateMobileToggleIcon();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+  });
+</script>
