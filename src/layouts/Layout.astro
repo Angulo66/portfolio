@@ -1,24 +1,88 @@
-
 ---
 import '../styles/global.css';
 import '../styles/theme.css';
+import { SEO } from 'astro-seo';
 import Header from '../components/Header.astro';
+import StructuredData from '../components/StructuredData.astro';
 import hLogo from '../assets/h-logo.svg';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Helder Lopez Angulo | Full-Stack Developer',
+  description = 'Full-Stack Developer specializing in React, Node.js, and Web3 technologies. Experienced in building scalable web applications and blockchain solutions.'
+} = Astro.props;
+
+const canonicalURL = Astro.url.pathname === '/' ? Astro.site : new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={hLogo.src} />
-		<meta name="generator" content={Astro.generator} />
-		<title>Helder Lopez Angulo</title>
-	</head>
-	<body>
-		<Header />
-		<slot />
-	</body>
+  <head>
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title,
+          type: 'website',
+          image: '/og-image.png'
+        }
+      }}
+      twitter={{
+        creator: '@yourtwitterhandle'
+      }}
+      extend={{
+        meta: [
+          { name: 'twitter:image', content: '/og-image.png' },
+          { name: 'twitter:title', content: title },
+          { name: 'twitter:description', content: description }
+        ],
+        link: [{ rel: 'icon', href: '/favicon.ico' }]
+      }}
+    />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={hLogo.src} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/og-image.png" />
+
+    <!-- Additional SEO tags -->
+    <meta name="keywords" content="full-stack developer, web developer, react, node.js, web3, blockchain, javascript, typescript" />
+    <meta name="author" content="Helder Lopez Angulo" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href={hLogo.src} as="image" />
+  </head>
+  <body>
+    <StructuredData />
+    <Header />
+    <slot />
+  </body>
 </html>
 
 <!-- Tailwind CSS is now being used for styling -->

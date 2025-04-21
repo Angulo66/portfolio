@@ -1,0 +1,13 @@
+---
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Helder Lopez Angulo',
+  jobTitle: 'Full-Stack Developer',
+  url: 'https://portfolio-iota-tan-48.vercel.app/',
+  sameAs: ['https://www.linkedin.com/in/helderangulo/', 'https://github.com/Angulo66'],
+  knowsAbout: ['Web Development', 'React', 'Node.js', 'Web3', 'Blockchain Development', 'JavaScript', 'TypeScript']
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
