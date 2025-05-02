@@ -2,7 +2,8 @@
 import '../styles/global.css';
 import '../styles/theme.css';
 import { SEO } from 'astro-seo';
-import Analytics from '@vercel/analytics/astro'
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import Header from '../components/Header.astro';
 import StructuredData from '../components/StructuredData.astro';
 import hLogo from '../assets/h-logo.svg';
@@ -84,6 +85,7 @@ const canonicalURL = Astro.url.pathname === '/' ? Astro.site : new URL(Astro.url
     <Header />
     <slot />
     <Analytics />
+    <SpeedInsights />
   </body>
 </html>
 
