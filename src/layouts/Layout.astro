@@ -18,7 +18,10 @@ const {
   description = 'Full-Stack Developer specializing in React, Node.js, and Web3 technologies. Experienced in building scalable web applications and blockchain solutions.'
 } = Astro.props;
 
-const canonicalURL = Astro.url.pathname === '/' ? Astro.site : new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || 'https://helderis-a.dev'
+);
 ---
 
 <!doctype html>
@@ -90,3 +93,4 @@ const canonicalURL = Astro.url.pathname === '/' ? Astro.site : new URL(Astro.url
 </html>
 
 <!-- Tailwind CSS is now being used for styling -->
+
